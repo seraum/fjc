@@ -1,22 +1,26 @@
 {
 	"name": "fjc",
 	"description": "FortressJS CLI manager",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"main": "f.js",
-	"scripts": {
+	"bin": 
+	{
 		"fjc": "node f.js"
 	},
-	"repository": {
+	"repository": 
+	{
 		"type": "git",
 		"url": "https://github.com/adrien-thierry/fjc.git"
 	},
-	"dependencies": {
+	"dependencies": 
+	{
 		"nodegit": "latest"
 	},
 	"keywords": [],
 	"author": "Adrien THIERRY",
 	"license": "AGPL",
-	"bugs": {
+	"bugs": 
+	{
 		"url": "https://github.com/adrien-thierry/fjc/issues"
 	},
 	"homepage": "http://fortressjs.com/"
