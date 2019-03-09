@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 /*
  * This file is part of FJC
  * Copyright (c) 2019 Adrien THIERRY
@@ -67,6 +69,10 @@ if(CLI.error)
 if(CLI.cli["--help"] || CLI.cli["-h"])
 {
 	HELP();
+}
+else if(CLI.cli["--version"] || CLI.cli["-v"])
+{
+	VERSION();
 }
 else if(CLI.cli["--start"])
 {
@@ -208,5 +214,14 @@ function removeEmpty(_path)
 function HELP()
 {
 	console.log("Usage : fjc [--start|--create|--add|--help]");
+	process.exit(0);
+}
+
+function VERSION()
+{
+	var _p = path.join(__dirname, "package.json");
+	var _json = fs.readFileSync(_p).toString();
+	_json = JSON.parse(_json);
+	console.log("[*] FJC Version v" + _json.version);
 	process.exit(0);
 }

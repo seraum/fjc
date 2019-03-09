@@ -1,7 +1,7 @@
 {
 	"name": "fjc",
 	"description": "FortressJS CLI manager",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"main": "fjc",
 	"bin": 
 	{
