@@ -8,7 +8,7 @@ Simple and fast CLI tool to install and manage FortressJS instances
 
 # Add default engines 
 
-`fjc --add engine default`
+`fjc --add engine --default`
 
 # Add a demo server
 
