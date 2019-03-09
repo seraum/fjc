@@ -82,7 +82,7 @@ else if(CLI.cli["--create"])
 {
 	console.log("[+] CREATING NEW FJC INSTANCE : " + CLI.cli["--create"].argument);
 	Git.Clone(FJC_REPO, path.join(CURRENT_DIR, CLI.cli["--create"].argument))
-	.then(function(){fs.writeFileSync(path.join(CURRENT_DIR, CLI.cli["--create"].argument, FJC_FILE)})
+	.then(function(){fs.writeFileSync(path.join(CURRENT_DIR, CLI.cli["--create"].argument, FJC_FILE))})
 	.then(function(){console.log("[*] Done")});
 }
 else if(CLI.cli["--add"])
