@@ -147,6 +147,7 @@ else if(CLI.cli["--add"])
 				ERROR("[!] please specify --name, --path or --url");
 			}
 		break;
+		
 		case "engine" :
 				if(CLI.cli["--default"])
 				{
@@ -175,6 +176,93 @@ else if(CLI.cli["--add"])
 					ERROR("[!] please specify --default, --name or --url");
 				}
 		break;
+		
+		case "host":
+			if(!CLI.cli["--srv"])
+			{
+				ERROR("[!] You must to specify a srv with --srv");
+			}
+				
+			if(CLI.cli["--name"])
+			{
+				var _full = CLI.cli["--name"].argument;
+				var _name = _full.split("/");
+				
+				if(_name.length != 2)
+				{
+					ERROR("[!] Bad srv name : " + _full);
+				}
+				
+				_name = _name[1];
+				
+				var _srv = path.join(CURRENT_DIR, "content", "srv", CLI.cli["--srv"].argument);
+				
+				if(!fs.existsSync(_srv))
+				{
+					ERROR("[!] Srv " + CLI.cli["--srv"].argument + " doesn't exist");
+				}
+				
+				var _host = path.join(_srv, "host");
+				removeEmpty(_host);
+				
+				
+				Git.Clone(GIT_START + CLI.cli["--name"].argument, path.join(_host, _name))
+				.then( function() { INSTALL(CURRENT_DIR, path.join(_host, _name)) } )
+				.catch(function(err) { console.log(err); } );
+			}
+			else if(CLI.cli["--path"])
+			{
+				var _full = CLI.cli["--path"].argument;
+				var _name = path.basename(_full);
+				
+
+				var _srv = path.join(CURRENT_DIR, "content", "srv", CLI.cli["--srv"].argument);
+				
+				if(!fs.existsSync(_srv))
+				{
+					ERROR("[!] Srv " + CLI.cli["--srv"].argument + " doesn't exist");
+				}
+				
+				var _host = path.join(_srv, "host");
+				removeEmpty(_host);
+				
+				copyFolderSync(_full, path.join(_host, _name));
+				
+				INSTALL(CURRENT_DIR, path.join(_host, _name) )
+
+			}
+			else if(CLI.cli["--url"])
+			{
+				var _full = CLI.cli["--url"].argument;
+				var _name = _full.split("/");
+				
+				if(_name.length < 3)
+				{
+					ERROR("[!] Bad srv url : " + _full);
+				}
+				
+				_name = _name[_name.length - 1];
+				
+				var _srv = path.join(CURRENT_DIR, "content", "srv", CLI.cli["--srv"].argument);
+				
+				if(!fs.existsSync(_srv))
+				{
+					ERROR("[!] Srv " + CLI.cli["--srv"].argument + " doesn't exist");
+				}
+				
+				var _host = path.join(_srv, "host");
+				removeEmpty(_host);
+				
+				Git.Clone(_full, path.join(_host, _name))
+				.then( function() { INSTALL(CURRENT_DIR, path.join(_host, _name) ) } )
+				.catch(function(err) { console.log(err); } );
+			}
+			else
+			{
+				ERROR("[!] please specify --name, --path or --url");
+			}
+		break;
+		
 		default:
 			console.error("[+] Invalid --add option");
 			break;
