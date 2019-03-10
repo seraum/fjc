@@ -107,7 +107,22 @@ else if(CLI.cli["--add"])
 				removeEmpty(_srv);
 				
 				Git.Clone(GIT_START + CLI.cli["--name"].argument, path.join(_srv, _name))
+				.then( function() { INSTALL(CURRENT_DIR, path.join(_srv, _name)) } )
 				.catch(function(err) { console.log(err); } );
+			}
+			if(CLI.cli["--path"])
+			{
+				var _full = CLI.cli["--path"].argument;
+				var _name = path.basename(_full);
+				
+
+				var _srv = path.join(CURRENT_DIR, "content", "srv");
+				removeEmpty(_srv);
+				
+				copyFolderSync(_full, path.join(_srv, _name));
+				
+				INSTALL(CURRENT_DIR, path.join(_srv, _name) )
+
 			}
 			else if(CLI.cli["--url"])
 			{
@@ -124,6 +139,7 @@ else if(CLI.cli["--add"])
 				
 				removeEmpty(_srv);
 				Git.Clone(_full, path.join(_srv, _name))
+				.then( function() { INSTALL(CURRENT_DIR, path.join(_srv, _name) ) } )
 				.catch(function(err) { console.log(err); } );
 			}
 			else
@@ -209,6 +225,31 @@ function removeEmpty(_path)
 	{
 		fs.unlinkSync(path.join(_path, "empty"));
 	}catch(e){};
+}
+
+function copyFolderSync(from, to) 
+{
+    fs.mkdirSync(to);
+    fs.readdirSync(from).forEach(element => {
+        if (fs.lstatSync(path.join(from, element)).isFile()) 
+		{
+            fs.copyFileSync(path.join(from, element), path.join(to, element));
+        } 
+		else 
+		{
+            copyFolderSync(path.join(from, element), path.join(to, element));
+        }
+    });
+}
+
+function INSTALL(_rootPath, _srvPath)
+{
+	var _installFile = path.join(_srvPath, "install.js");
+	if(fs.existsSync( _installFile ))
+	{
+		var _install = require(_installFile);
+		_install( { rootPath: _rootPath, srvPath: _srvPath } );
+	}
 }
 
 function HELP()
