@@ -63,7 +63,7 @@ function ERROR(_msg)
 
 if(CLI.error)
 {
-	EROR(CLI.msg);
+	ERROR(CLI.msg);
 }
 
 if(CLI.cli["--help"] || CLI.cli["-h"])
