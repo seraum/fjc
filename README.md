@@ -2,9 +2,9 @@
 
 Simple and fast CLI tool to install and manage FortressJS instances
 
-# Create FortressJS instance 
+# Init a new FortressJS instance 
 
-`fjc --create {NAME}`
+`fjc --init {NAME}`
 
 # Add default engines 
 
