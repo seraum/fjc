@@ -78,17 +78,17 @@ else if(CLI.cli["--start"])
 {
 	fork(path.join(CURRENT_DIR, "wf.js"));
 }
-else if(CLI.cli["--create"])
+else if(CLI.cli["--init"])
 {
-	console.log("[+] CREATING NEW FJC INSTANCE : " + CLI.cli["--create"].argument);
-	Git.Clone(FJC_REPO, path.join(CURRENT_DIR, CLI.cli["--create"].argument))
-	.then(function(){fs.writeFileSync(path.join(CURRENT_DIR, CLI.cli["--create"].argument, FJC_FILE))})
+	console.log("[+] CREATING NEW FJC INSTANCE : " + CLI.cli["--init"].argument);
+	Git.Clone(FJC_REPO, path.join(CURRENT_DIR, CLI.cli["--init"].argument))
+	.then(function(){fs.writeFileSync(path.join(CURRENT_DIR, CLI.cli["--init"].argument, FJC_FILE))})
 	.then(function(){console.log("[*] Done")});
 }
 else if(CLI.cli["--add"])
 {
 	var _inFJC = fs.existsSync(FJC_FILE);
-	if(!_inFJC) ERROR("[!] Not in a FJC folder, please create a new FJC instance with : fjc --create {NAME} && cd {NAME}");
+	if(!_inFJC) ERROR("[!] Not in a FJC folder, please init a new FJC instance with : fjc --init {NAME} && cd {NAME}");
 	switch(CLI.cli["--add"].argument)
 	{
 		case "srv":
@@ -342,7 +342,7 @@ function INSTALL(_rootPath, _srvPath)
 
 function HELP()
 {
-	console.log("Usage : fjc [--start|--create|--add|--help]");
+	console.log("Usage : fjc [--start|--init|--add|--help]");
 	process.exit(0);
 }
 
