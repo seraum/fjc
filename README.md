@@ -14,6 +14,11 @@ Simple and fast CLI tool to install and manage FortressJS instances
 
 `fjc --add srv --name adrien-thierry/fortressjs-demo-server`
 
+# Add an empty srv and a host
+
+* `fjc --add srv --name adrien-thierry/fjsweb`
+* `fjc --add host --srv fjsweb --name adrien-thierry/fortpress`
+
 # Start an instance 
 
 `fjc --start`
