@@ -2,6 +2,10 @@
 
 Simple and fast CLI tool to install and manage FortressJS instances
 
+# Install 
+
+`npm install -g fjc`
+
 # Init a new FortressJS instance 
 
 `fjc --init {NAME}`
