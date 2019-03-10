@@ -110,7 +110,7 @@ else if(CLI.cli["--add"])
 				.then( function() { INSTALL(CURRENT_DIR, path.join(_srv, _name)) } )
 				.catch(function(err) { console.log(err); } );
 			}
-			if(CLI.cli["--path"])
+			else if(CLI.cli["--path"])
 			{
 				var _full = CLI.cli["--path"].argument;
 				var _name = path.basename(_full);
@@ -144,7 +144,7 @@ else if(CLI.cli["--add"])
 			}
 			else
 			{
-				ERROR("[!] please specify --name or --url");
+				ERROR("[!] please specify --name, --path or --url");
 			}
 		break;
 		case "engine" :
