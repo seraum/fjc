@@ -26,3 +26,11 @@ Simple and fast CLI tool to install and manage FortressJS instances
 # Start an instance 
 
 `fjc --start`
+
+# Run unit test
+
+`fjc --test`
+
+# Clean project for prod
+
+`fjc --clean`
