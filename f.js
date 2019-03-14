@@ -78,6 +78,10 @@ else if(CLI.cli["--test"])
 {
 	TEST();
 }
+else if(CLI.cli["--clean"])
+{
+	CLEAN();
+}
 else if(CLI.cli["--start"])
 {
 	fork(path.join(CURRENT_DIR, "wf.js"));
@@ -362,4 +366,9 @@ function VERSION()
 function TEST()
 {
 	fork(path.join(CURRENT_DIR, "wf.js"), ["--test"]);
+}
+
+function CLEAN()
+{
+	fork(path.join(CURRENT_DIR, "wf.js"), ["--clean"]);
 }
