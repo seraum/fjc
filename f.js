@@ -74,6 +74,10 @@ else if(CLI.cli["--version"] || CLI.cli["-v"])
 {
 	VERSION();
 }
+else if(CLI.cli["--test"])
+{
+	TEST();
+}
 else if(CLI.cli["--start"])
 {
 	fork(path.join(CURRENT_DIR, "wf.js"));
@@ -353,4 +357,9 @@ function VERSION()
 	_json = JSON.parse(_json);
 	console.log("[*] FJC Version v" + _json.version);
 	process.exit(0);
+}
+
+function TEST()
+{
+	fork(path.join(CURRENT_DIR, "wf.js"), ["--test"]);
 }
