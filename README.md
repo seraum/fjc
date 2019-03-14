@@ -2,9 +2,13 @@
 
 Simple and fast CLI tool to install and manage FortressJS instances
 
-# Create FortressJS instance 
+# Install 
 
-`fjc --create {NAME}`
+`npm install -g fjc`
+
+# Init a new FortressJS instance 
+
+`fjc --init {NAME}`
 
 # Add default engines 
 
@@ -13,6 +17,11 @@ Simple and fast CLI tool to install and manage FortressJS instances
 # Add a demo server
 
 `fjc --add srv --name adrien-thierry/fortressjs-demo-server`
+
+# Add an empty srv and a host
+
+* `fjc --add srv --name adrien-thierry/fjsweb`
+* `fjc --add host --srv fjsweb --name adrien-thierry/fortpress`
 
 # Start an instance 
 
