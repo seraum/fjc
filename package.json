@@ -1,27 +1,29 @@
 {
-	"name": "fjc",
-	"description": "FortressJS CLI manager",
-	"version": "1.0.13",
-	"main": "fjc",
-	"bin": 
-	{
-		"fjc": "f.js"
-	},
-	"repository": 
-	{
-		"type": "git",
-		"url": "https://github.com/adrien-thierry/fjc.git"
-	},
-	"dependencies": 
-	{
-		"nodegit": "latest"
-	},
-	"keywords": [],
-	"author": "Adrien THIERRY",
-	"license": "AGPL",
-	"bugs": 
-	{
-		"url": "https://github.com/adrien-thierry/fjc/issues"
-	},
-	"homepage": "http://fortressjs.com/"
+  "name": "fjc",
+  "description": "FortressJS CLI manager",
+  "version": "1.0.13",
+  "main": "fjc",
+  "bin": {
+    "fjc": "f.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/adrien-thierry/fjc.git"
+  },
+  "dependencies": {
+    "nodegit": "latest",
+    "snyk": "^1.190.0"
+  },
+  "keywords": [],
+  "author": "Adrien THIERRY",
+  "license": "AGPL",
+  "bugs": {
+    "url": "https://github.com/adrien-thierry/fjc/issues"
+  },
+  "homepage": "http://fortressjs.com/",
+  "scripts": {
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
+  },
+  "snyk": true
 }
